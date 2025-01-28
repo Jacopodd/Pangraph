@@ -1,0 +1,12 @@
+S	1	ACCCTA
+S	2	ACGTTA
+S	3	TTAACC
+S	4	GGCCAA
+S	5	TTTTTT
+S	6	CCCCCC
+L	1	+	2	+	1M
+L	2	+	3	+	1M
+L	3	+	4	+	1M
+L	4	+	5	+	1M
+L	5	+	2	+	1M
+L	4	+	6	+	1M
