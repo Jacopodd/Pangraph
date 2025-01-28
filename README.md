@@ -27,7 +27,7 @@ Seguire questi passaggi per scaricare, installare e avviare il progetto.
 #### Opzione 1: Clonare il repository da GitHub
 Apri il terminale e inserisci il seguente comando:
 ```bash
-git clone https://github.com/TUO-USERNAME/Pangraph.git
+git clone https://github.com/Jacopodd/Pangraph.git
 cd Pangraph
 ```
 
