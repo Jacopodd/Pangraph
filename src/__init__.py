@@ -14,3 +14,7 @@ __all__ = [
     "compute_statistics",
     "run_app",
 ]
+
+import sys
+if "src.app" in sys.modules:
+    del sys.modules["src.app"]

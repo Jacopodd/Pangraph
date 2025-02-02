@@ -14,13 +14,27 @@ cyto.load_extra_layouts()
 
 app = dash.Dash(__name__, suppress_callback_exceptions=True)
 
+
 # Layout dell'app
 from dash import dcc
+
+
 app.layout = html.Div(
+    style={
+        "fontFamily": "Trebuchet MS, sans-serif",
+        "backgroundColor": "#1B1F23",  # Sfondo scuro (grigio grafite)
+        "color": "#F0F7F4",  # Testo chiaro per contrasto
+        "padding": "20px",
+    },
     children=[
-        html.H1(
-            "PanGraph",
-            style={"textAlign": "center", "marginBottom": "20px"},
+        html.Img(
+            src="/assets/logo.png",  # Usa il logo personalizzato
+            style={
+                "display": "block",
+                "margin": "20px auto",
+                "maxWidth": "200px",  # Puoi cambiarlo a seconda delle dimensioni del logo
+                "height": "auto",
+            },
         ),
 
         # Input per il file GFA e pulsante di caricamento
@@ -36,7 +50,9 @@ app.layout = html.Div(
                         "width": "60%",
                         "padding": "10px",
                         "borderRadius": "5px",
-                        "border": "1px solid #ccc",
+                        "border": "1px solid #D1D5DB",  # Grigio chiaro
+                        "backgroundColor": "#33393F",  # Campo input più scuro
+                        "color": "#F0F7F4",
                     },
                 ),
                 html.Button(
@@ -44,12 +60,13 @@ app.layout = html.Div(
                     id="load-graph-btn",
                     style={
                         "marginLeft": "10px",
-                        "backgroundColor": "#007BFF",
-                        "color": "#fff",
+                        "backgroundColor": "#00D4AA",  # Verde acqua
+                        "color": "#1B1F23",  # Testo scuro per contrasto
                         "padding": "10px 15px",
                         "border": "none",
                         "borderRadius": "5px",
                         "cursor": "pointer",
+                        "boxShadow": "2px 2px 5px rgba(255, 255, 255, 0.1)",
                     },
                 ),
             ],
@@ -67,7 +84,14 @@ app.layout = html.Div(
                 cyto.Cytoscape(
                     id="pangenome-graph",
                     layout={"name": "cose"},
-                    style={"width": "70%", "height": "600px", "border": "1px solid #ccc", "borderRadius": "10px"},
+                    style={
+                        "width": "70%",
+                        "height": "600px",
+                        "border": "2px solid #6D44A1",  # Viola profondo
+                        "borderRadius": "10px",
+                        "backgroundColor": "#24292E",  # Scuro ma non nero
+                        "boxShadow": "2px 2px 10px rgba(255, 255, 255, 0.1)",
+                    },
                     elements=[],
                 ),
 
@@ -75,16 +99,22 @@ app.layout = html.Div(
                 html.Div(
                     style={
                         "width": "30%",
-                        "padding": "10px",
-                        "backgroundColor": "#fff",
+                        "padding": "15px",
+                        "backgroundColor": "#24292E",  # Pannello scuro
                         "borderRadius": "10px",
-                        "boxShadow": "0px 4px 10px rgba(0, 0, 0, 0.1)",
+                        "boxShadow": "2px 2px 10px rgba(255, 255, 255, 0.1)",
                     },
                     children=[
-                        html.H3("Dettagli Nodo", style={"textAlign": "center", "color": "#007BFF"}),
+                        html.H3(
+                            "Dettagli Nodo",
+                            style={"textAlign": "center", "color": "#00D4AA"},  # Verde acqua
+                        ),
                         html.Div(id="node-data-output", style={"marginTop": "20px"}),
 
-                        html.H3("Statistiche Grafo", style={"textAlign": "center", "color": "#007BFF", "marginTop": "30px"}),
+                        html.H3(
+                            "Statistiche Grafo",
+                            style={"textAlign": "center", "color": "#00D4AA", "marginTop": "30px"},
+                        ),
                         html.Div(id="graph-stats-output", style={"marginTop": "20px"}),
 
                         html.Div(
@@ -94,25 +124,27 @@ app.layout = html.Div(
                                     "Evidenzia Bubbles",
                                     id="highlight-bubbles-btn",
                                     style={
-                                        "backgroundColor": "#28A745",
-                                        "color": "#fff",
+                                        "backgroundColor": "#005F73",  # Blu ottanio
+                                        "color": "#F0F7F4",
                                         "padding": "10px 20px",
                                         "border": "none",
                                         "borderRadius": "5px",
                                         "cursor": "pointer",
                                         "marginRight": "10px",
+                                        "boxShadow": "2px 2px 5px rgba(255, 255, 255, 0.1)",
                                     },
                                 ),
                                 html.Button(
                                     "Reset Evidenziazione",
                                     id="reset-highlight-btn",
                                     style={
-                                        "backgroundColor": "#DC3545",
-                                        "color": "#fff",
+                                        "backgroundColor": "#6D44A1",  # Viola profondo
+                                        "color": "#F0F7F4",
                                         "padding": "10px 20px",
                                         "border": "none",
                                         "borderRadius": "5px",
                                         "cursor": "pointer",
+                                        "boxShadow": "2px 2px 5px rgba(255, 255, 255, 0.1)",
                                     },
                                 ),
                             ],
@@ -130,12 +162,13 @@ app.layout = html.Div(
                     "Esporta in CSV",
                     id="export-csv-btn",
                     style={
-                        "backgroundColor": "#17A2B8",
-                        "color": "#fff",
+                        "backgroundColor": "#FFA500",  # Arancione brillante
+                        "color": "#1B1F23",
                         "padding": "10px 20px",
                         "border": "none",
                         "borderRadius": "5px",
                         "cursor": "pointer",
+                        "boxShadow": "2px 2px 5px rgba(255, 255, 255, 0.1)",
                     },
                 ),
                 dcc.Download(id="download-dataframe-csv"),
@@ -143,6 +176,8 @@ app.layout = html.Div(
         ),
     ]
 )
+
+
 
 
 
@@ -339,4 +374,7 @@ def export_csv(n_clicks, graph_data):
 server = app.server  # Per eventuale deploy su servizi come Heroku
 
 def run_app():
-    app.run_server(debug=True)
+    app.run_server(debug=True, use_reloader=False)
+    
+if __name__ == "__main__":
+    run_app()
