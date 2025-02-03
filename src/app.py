@@ -18,7 +18,6 @@ app = dash.Dash(__name__, suppress_callback_exceptions=True)
 # Layout dell'app
 from dash import dcc
 
-
 app.layout = html.Div(
     style={
         "fontFamily": "Trebuchet MS, sans-serif",
@@ -176,9 +175,6 @@ app.layout = html.Div(
         ),
     ]
 )
-
-
-
 
 
 # CALLBACK 1: Caricamento e costruzione del grafo
