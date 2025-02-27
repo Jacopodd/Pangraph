@@ -1,0 +1,20 @@
+# Cartelle di ambiente virtuale
+venv/
+env/
+_pycache_/
+*.pyc
+*.pyo
+*.pyd
+
+# File di configurazione o di credenziali
+*.env
+config.json
+settings.py
+
+# File di log e database temporanei
+logs/
+*.log
+*.sqlite3
+
+# Dipendenze installate
+*.egg-info/
