@@ -147,4 +147,3 @@ To contribute:
 ## 📜 License
 
 Distributed under the **MIT License**.  
-See the `LICENSE` file for details.
